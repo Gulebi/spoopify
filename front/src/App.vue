@@ -1,5 +1,27 @@
-<script></script>
+<script>
+import Header from "./components/Header.vue";
+import Main from "./components/Main.vue";
 
-<template></template>
+export default {
+    name: "App",
+    components: {
+        Header,
+        Main,
+    },
+};
+</script>
 
-<style></style>
+<template>
+    <div id="container">
+        <Header></Header>
+        <Main></Main>
+    </div>
+</template>
+
+<style scoped>
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+</style>

@@ -1,7 +1,16 @@
 :root {
-    --light-cyan: #bee9e8;
-    --medium-cyan: #62b6cb;
-    --dark-blue: #1b4965;
-    --light-blue: #cae9ff;
-    --medium-blue: #5fa8d3;
+    --light-sky: #bee9e8;
+    --light-cobalt: #62b6cb;
+    --dark-ultramarine: #1b4965;
+    --light-ultramarine: #cae9ff;
+    --medium-ultramarine: #5fa8d3;
+
+    --header-footer-color: var(--medium-ultramarine);
+    --main-color: var(--light-cobalt);
+
+    --input-color: #c8eceb;
+    --input-color-hover: #d5f1f0;
+    --input-color-outline: #2e8786;
+
+    --text-color-dark: #050d11;
 }

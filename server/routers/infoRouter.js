@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/getPlaylistInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url } = req.body;
+        const { url } = req.query;
 
         ysr.getPlaylist(url)
             .then((info) => {
@@ -22,7 +22,7 @@ router.get("/getPlaylistInfo", async (req, res) => {
 router.get("/getPlaylistFullInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url } = req.body;
+        const { url } = req.query;
 
         ytdl.getInfo(url)
             .then((info) => {
@@ -37,7 +37,7 @@ router.get("/getPlaylistFullInfo", async (req, res) => {
 router.get("/getVideoFullInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url } = req.body;
+        const { url } = req.query;
 
         ytdl.getInfo(url)
             .then((info) => {
