@@ -11,8 +11,5 @@
     "discord.removeTimestamp": true,
     "cSpell.words": ["btns", "dfsd", "gleb", "guleb", "gulebi", "ivanov", "newsline", "signin", "subblock", "subrow"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSaveTimeout": 2000,
-    "emmet.includeLanguages": {
-        "javascript": "html"
-    }
+    "editor.formatOnSaveTimeout": 2000
 }

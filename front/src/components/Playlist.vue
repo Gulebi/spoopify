@@ -3,6 +3,9 @@ import PlaylistItem from "./PlaylistItem.vue";
 
 export default {
     name: "Playlist",
+    props: {
+        playlistData: Object,
+    },
     components: {
         PlaylistItem,
     },
@@ -12,7 +15,13 @@ export default {
 <template>
     <div id="playlist">
         <h2 id="playlist-title">Playlist</h2>
-        <PlaylistItem></PlaylistItem>
+        <div id="playlist-items">
+            <PlaylistItem
+                v-for="itemData in playlistData?.videos"
+                :key="itemData.id"
+                :itemData="itemData"
+            ></PlaylistItem>
+        </div>
     </div>
 </template>
 
@@ -20,6 +29,13 @@ export default {
 #playlist {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+}
+
+#playlist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 #playlist-title {

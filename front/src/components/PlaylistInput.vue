@@ -5,14 +5,14 @@ export default {
 </script>
 
 <template>
-    <div id="playlist-input-block">
+    <div id="playlist-input">
         <input type="text" id="playlist-input" placeholder="Playlist URL" />
         <input type="button" value="Search" id="playlist-btn" />
     </div>
 </template>
 
 <style scoped>
-#playlist-input-block {
+#playlist-input {
     display: flex;
     justify-content: center;
     gap: 7px;
@@ -24,10 +24,10 @@ input {
 }
 
 #playlist-input {
-    width: 250px;
+    width: 350px;
 }
 
 #playlist-btn {
-    width: 100px;
+    width: 150px;
 }
 </style>

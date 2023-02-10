@@ -1,8 +1,3 @@
 # GET Info
 
-GET http://localhost:3000/api/getPlaylistInfo
-content-type: application/json
-
-{
-    "url":"https://www.youtube.com/watch?v=J2kGYnv5qRI&list=PLI3qsl2pruhDW1QnKL6xLe8c06-821r7u"
-}
+GET http://localhost:3000/api/getPlaylistInfo/?url=https://www.youtube.com/watch?v=J2kGYnv5qRI&list=PLI3qsl2pruhDW1QnKL6xLe8c06-821r7u

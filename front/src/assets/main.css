@@ -14,13 +14,17 @@ body {
 }
 
 header,
+main,
 footer {
     padding: 0 10%;
+}
+
+header,
+footer {
     background: var(--header-footer-color);
 }
 
 main {
-    margin: 0 10%;
     background: var(--main-color);
 }
 

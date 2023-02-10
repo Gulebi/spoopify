@@ -13,9 +13,10 @@ router.get("/getPlaylistInfo", async (req, res) => {
             .then((info) => {
                 return res.status(200).send({ message: "Success", data: info });
             })
-            .catch((e) => console.log(e));
+            .catch((err) => res.status(500).send({ message: "Error" }));
     } catch (error) {
         console.error(error);
+        return res.status(500).send({ message: "Error" });
     }
 });
 
@@ -28,7 +29,25 @@ router.get("/getPlaylistFullInfo", async (req, res) => {
             .then((info) => {
                 return res.status(200).send({ message: "Success", data: info });
             })
-            .catch((e) => console.log(e));
+            .catch((err) => res.status(500).send({ message: "Error" }));
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({ message: "Error" });
+    }
+});
+
+router.get("/getVideoInfo", async (req, res) => {
+    try {
+        res.set("Content-Type", "application/json");
+        const { url, id } = req.query;
+
+        if (id) url = `https://www.youtube.com/watch?v=${id}`;
+
+        ysr.getVideo(url)
+            .then((info) => {
+                return res.status(200).send({ message: "Success", data: info });
+            })
+            .catch((err) => res.status(500).send({ message: "Error" }));
     } catch (error) {
         console.error(error);
     }
