@@ -13,5 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/static", express.static(__dirname + "/public"));
 
 app.use("/api", require("./routers/infoRouter"));
+app.use("/api", require("./routers/audioRouter"));
 
 app.listen(port, () => console.log(`App running at http://localhost:${port}/`));

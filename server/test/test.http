@@ -1,3 +1,15 @@
-# GET Info
+### GET Info
 
-GET http://localhost:3000/api/getPlaylistInfo/?url=https://www.youtube.com/watch?v=J2kGYnv5qRI&list=PLI3qsl2pruhDW1QnKL6xLe8c06-821r7u
+GET http://localhost:3000/api/getPlaylistInfo/?url=https://www.youtube.com/playlist?list=PLI3qsl2pruhDW1QnKL6xLe8c06-821r7u
+
+### GET Video Info
+
+GET http://localhost:3000/api/getVideoInfo/?url=https://www.youtube.com/watch?v=J2kGYnv5qRI
+
+### GET Video Full Info
+
+GET http://localhost:3000/api/getVideoFullInfo/?url=https://www.youtube.com/watch?v=J2kGYnv5qRI
+
+### GET Video Full Info
+
+GET http://localhost:3000/api/getAudioFile/?url=https://www.youtube.com/watch?v=J2kGYnv5qRI

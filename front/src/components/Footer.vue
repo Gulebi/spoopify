@@ -1,11 +1,18 @@
 <script>
+import Player from "./Player.vue";
+
 export default {
     name: "Footer",
+    components: {
+        Player,
+    },
 };
 </script>
 
 <template>
-    <footer><h2 id="footer-title">App</h2></footer>
+    <footer>
+        <Player></Player>
+    </footer>
 </template>
 
 <style scoped>
@@ -14,9 +21,5 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#footer-title {
-    font-size: 38px;
 }
 </style>

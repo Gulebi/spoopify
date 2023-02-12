@@ -54,3 +54,19 @@ input[type="button"] {
 input[type="button"]:hover {
     background: var(--input-color-hover);
 }
+
+button {
+    min-width: 50px;
+    height: 28px;
+    padding: 3px 6px;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: var(--input-color);
+}
+
+button:hover {
+    background: var(--input-color-hover);
+}

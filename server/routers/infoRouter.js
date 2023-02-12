@@ -13,7 +13,10 @@ router.get("/getPlaylistInfo", async (req, res) => {
             .then((info) => {
                 return res.status(200).send({ message: "Success", data: info });
             })
-            .catch((err) => res.status(500).send({ message: "Error" }));
+            .catch((err) => {
+                console.error(err);
+                return res.status(500).send({ message: "Error" });
+            });
     } catch (error) {
         console.error(error);
         return res.status(500).send({ message: "Error" });
@@ -29,7 +32,10 @@ router.get("/getPlaylistFullInfo", async (req, res) => {
             .then((info) => {
                 return res.status(200).send({ message: "Success", data: info });
             })
-            .catch((err) => res.status(500).send({ message: "Error" }));
+            .catch((err) => {
+                console.error(err);
+                return res.status(500).send({ message: "Error" });
+            });
     } catch (error) {
         console.error(error);
         return res.status(500).send({ message: "Error" });
@@ -47,9 +53,13 @@ router.get("/getVideoInfo", async (req, res) => {
             .then((info) => {
                 return res.status(200).send({ message: "Success", data: info });
             })
-            .catch((err) => res.status(500).send({ message: "Error" }));
+            .catch((err) => {
+                console.error(err);
+                return res.status(500).send({ message: "Error" });
+            });
     } catch (error) {
         console.error(error);
+        return res.status(500).send({ message: "Error" });
     }
 });
 
@@ -62,9 +72,13 @@ router.get("/getVideoFullInfo", async (req, res) => {
             .then((info) => {
                 return res.status(200).send({ message: "Success", data: info });
             })
-            .catch((e) => console.log(e));
+            .catch((err) => {
+                console.error(err);
+                return res.status(500).send({ message: "Error" });
+            });
     } catch (error) {
         console.error(error);
+        return res.status(500).send({ message: "Error" });
     }
 });
 
