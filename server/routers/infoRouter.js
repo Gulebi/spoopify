@@ -7,7 +7,9 @@ const router = express.Router();
 router.get("/getPlaylistInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url } = req.query;
+        let { url, id } = req.query;
+
+        if (id) url = `https://www.youtube.com/playlist?list=${id}`;
 
         ysr.getPlaylist(url)
             .then((info) => {
@@ -26,7 +28,9 @@ router.get("/getPlaylistInfo", async (req, res) => {
 router.get("/getPlaylistFullInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url } = req.query;
+        let { url, id } = req.query;
+
+        if (id) url = `https://www.youtube.com/playlist?list=${id}`;
 
         ytdl.getInfo(url)
             .then((info) => {
@@ -45,7 +49,7 @@ router.get("/getPlaylistFullInfo", async (req, res) => {
 router.get("/getVideoInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url, id } = req.query;
+        let { url, id } = req.query;
 
         if (id) url = `https://www.youtube.com/watch?v=${id}`;
 
@@ -66,7 +70,9 @@ router.get("/getVideoInfo", async (req, res) => {
 router.get("/getVideoFullInfo", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { url } = req.query;
+        let { url, id } = req.query;
+
+        if (id) url = `https://www.youtube.com/watch?v=${id}`;
 
         ytdl.getInfo(url)
             .then((info) => {

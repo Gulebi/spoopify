@@ -1,13 +1,26 @@
 <script>
+import getInfoService from "../services/getInfo.service";
+
 import PlaylistItem from "./PlaylistItem.vue";
+
+const infoService = new getInfoService();
 
 export default {
     name: "Playlist",
-    props: {
-        playlistData: Object,
-    },
     components: {
         PlaylistItem,
+    },
+    data() {
+        return {
+            playlistId: this.$route.params.id,
+            playlistData: null,
+        };
+    },
+    created() {
+        infoService.playlistInfoById(this.playlistId).then((res) => {
+            this.playlistData = res.data;
+            console.log(res);
+        });
     },
 };
 </script>
@@ -29,6 +42,7 @@ export default {
 #playlist {
     display: flex;
     flex-direction: column;
+    padding: 15px 5%;
     gap: 15px;
 }
 

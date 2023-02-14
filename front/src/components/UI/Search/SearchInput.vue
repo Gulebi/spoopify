@@ -1,18 +1,18 @@
 <script>
 export default {
-    name: "PlaylistInput",
+    name: "SearchInput",
 };
 </script>
 
 <template>
-    <div id="playlist-input">
-        <input type="text" id="playlist-input" placeholder="Playlist URL" />
-        <input type="button" value="Search" id="playlist-btn" />
+    <div id="search-input">
+        <input type="text" id="search-input" placeholder="Playlist URL" />
+        <input type="button" value="Search" id="search-btn" />
     </div>
 </template>
 
 <style scoped>
-#playlist-input {
+#search-input {
     display: flex;
     justify-content: center;
     gap: 7px;
@@ -23,11 +23,11 @@ input {
     border-radius: 8px;
 }
 
-#playlist-input {
+#search-input {
     width: 350px;
 }
 
-#playlist-btn {
+#search-btn {
     width: 150px;
 }
 </style>

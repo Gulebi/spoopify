@@ -1,11 +1,13 @@
 <script>
 export default {
-    name: "App",
+    name: "Signup",
 };
 </script>
 
 <template>
-    <router-view></router-view>
+    <div id="signup">
+        <h1>Signup</h1>
+    </div>
 </template>
 
 <style scoped></style>
