@@ -1,10 +1,22 @@
 <script>
+import router from "../router/index";
+
 import Sidebar from "./Sidebar.vue";
 
 export default {
     name: "Main",
     components: {
         Sidebar,
+    },
+    data() {
+        return {
+            currentUserId: localStorage.getItem("currentUserId"),
+        };
+    },
+    created() {
+        if (!this.currentUserId) {
+            router.push({ path: "/login" });
+        }
     },
 };
 </script>

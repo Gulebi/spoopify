@@ -12,6 +12,6 @@ export default class userService {
     }
 
     async getUserInfo(userId) {
-        return await axios.get(`${API_URL}/api/users/?=${userId}`).then((res) => res.data);
+        return await axios.get(`${API_URL}/api/users/${userId}`).then((res) => res.data);
     }
 }

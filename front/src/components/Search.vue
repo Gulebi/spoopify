@@ -1,9 +1,11 @@
 <script>
+import Header from "./Header.vue";
 import SearchInput from "./UI/Search/SearchInput.vue";
 
 export default {
     name: "Search",
     components: {
+        Header,
         SearchInput,
     },
 };
@@ -11,21 +13,21 @@ export default {
 
 <template>
     <div id="search">
-        <h2 id="search-title">Search Playlist</h2>
-        <SearchInput></SearchInput>
+        <Header title="Search"></Header>
+        <div id="search-subblock">
+            <h2 id="search-title">Search Playlist</h2>
+            <SearchInput></SearchInput>
+        </div>
     </div>
 </template>
 
 <style scoped>
-#search {
+#search-subblock {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 5%;
-    gap: 8px;
-}
-
-#search-title {
-    text-align: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 10px;
 }
 </style>
