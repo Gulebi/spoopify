@@ -1,10 +1,22 @@
 <script>
+import { useUserStore } from "../stores/user";
+
 import SidebarLink from "./UI/Sidebar/SidebarLink.vue";
 
 export default {
     name: "Sidebar",
     components: {
         SidebarLink,
+    },
+    data() {
+        return {
+            currentUserInfo: null,
+        };
+    },
+    mounted() {
+        const userStore = useUserStore();
+
+        this.currentUserInfo = userStore.userInfo;
     },
 };
 </script>
@@ -19,8 +31,10 @@ export default {
         <hr />
         <div id="sidebar-playlists-tab" class="sidebar-tab">
             <SidebarLink
+                v-for="playlistId in currentUserInfo?.playlists"
+                :key="playlistId"
+                :relPath="`/playlist/${playlistId}`"
                 title="Playlist"
-                relPath="/playlist/PLI3qsl2pruhDW1QnKL6xLe8c06-821r7u"
                 :isPlaylist="true"
             ></SidebarLink>
         </div>

@@ -3,7 +3,7 @@ export default {
     name: "SidebarLink",
     props: {
         title: String,
-        relPath: String,
+        relPath: { type: String, default: "/playlist/PLJVQqvIhqPaTnLM6QfYVDJxZKUshQHjfJ" },
         isPlaylist: Boolean,
     },
 };

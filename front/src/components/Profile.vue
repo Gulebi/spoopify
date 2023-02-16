@@ -1,10 +1,8 @@
 <script>
 import router from "../router/index";
-import userServiceClass from "../services/user.service";
+import { useUserStore } from "../stores/user";
 
 import Header from "./Header.vue";
-
-const userService = new userServiceClass();
 
 export default {
     name: "Profile",
@@ -22,11 +20,12 @@ export default {
             localStorage.removeItem("currentUserId");
             router.push({ path: "/login" });
         },
+        changeMethod() {},
     },
-    created() {
-        userService.getUserInfo(this.currentUserId).then((res) => {
-            this.currentUserInfo = res.data;
-        });
+    mounted() {
+        const userStore = useUserStore();
+
+        this.currentUserInfo = userStore.userInfo;
     },
 };
 </script>
@@ -36,13 +35,19 @@ export default {
         <Header title="Profile"></Header>
         <div id="profile-subblock">
             <div id="user-info-block">
-                <h3 id="user-fullname">{{ currentUserInfo?.name + " " + currentUserInfo?.surname }}</h3>
-                <h4 id="user-login">{{ currentUserInfo?.login }}</h4>
-                <div id="playlists-block">
-                    <h4>Playlists:</h4>
-                    <div class="playlist"></div>
+                <div id="user-avatar-subblock">
+                    <img src="https://avatars.githubusercontent.com/u/75713653" id="user-avatar-image" />
                 </div>
-                <button @click="logoutMethod" id="logout-btn">Log out</button>
+                <h2 id="user-fullname">{{ currentUserInfo?.name + " " + currentUserInfo?.surname }}</h2>
+                <h3 id="user-login">{{ currentUserInfo?.login }}</h3>
+                <div id="btns-subblock">
+                    <button @click="changeMethod" id="change-btn">Change</button>
+                    <button @click="logoutMethod" id="logout-btn">Log out</button>
+                </div>
+            </div>
+            <div id="user-playlists-block">
+                <h3>Playlists:</h3>
+                <div class="playlist"></div>
             </div>
         </div>
     </div>
@@ -50,27 +55,40 @@ export default {
 
 <style scoped>
 #profile-subblock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 8%;
     margin-top: 50px;
+    padding: 0px 10%;
 }
 
-#user-info-block {
+#user-info-block,
+#user-playlists-block {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #3286bb;
-    padding: 15px 25px;
+    padding: 25px 35px;
     border-radius: 10px;
+}
+
+#user-avatar-subblock {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+#user-avatar-image {
+    width: 100%;
+    border-radius: 10%;
 }
 
 #playlists-block {
     margin-top: 5px;
 }
 
-#logout-btn {
+#btns-subblock {
+    display: flex;
+    gap: 10px;
     margin-top: 10px;
 }
 

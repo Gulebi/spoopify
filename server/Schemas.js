@@ -1,11 +1,14 @@
 const { Schema } = require("mongoose");
 
 const UserSchema = new Schema({
-    name: { type: String },
-    surname: { type: String },
-    login: { type: String },
-    password: { type: String },
-    playlists: { type: [String], default: [] },
+    name: String,
+    surname: String,
+    login: String,
+    password: String,
+    playlists: {
+        type: [{ id: String, title: String }],
+        default: [],
+    },
 });
 
 module.exports = { UserSchema };

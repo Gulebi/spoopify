@@ -14,4 +14,12 @@ export default class userService {
     async getUserInfo(userId) {
         return await axios.get(`${API_URL}/api/users/${userId}`).then((res) => res.data);
     }
+
+    async changeUserInfo(userId, userInfo) {
+        return await axios.post(`${API_URL}/api/users/${userId}`, userInfo).then((res) => res.data);
+    }
+
+    async addPlaylist(userId, playlistInfo) {
+        return await axios.post(`${API_URL}/api/users/addPlaylist/${userId}`, playlistInfo).then((res) => res.data);
+    }
 }

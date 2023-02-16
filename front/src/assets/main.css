@@ -47,6 +47,7 @@ input[type="text"]:focus {
 input[type="button"] {
     min-width: 50px;
     cursor: pointer;
+    padding: 3px 10px;
     transition: 0.2s;
 }
 
@@ -57,7 +58,7 @@ input[type="button"]:hover {
 button {
     min-width: 50px;
     height: 28px;
-    padding: 3px 6px;
+    padding: 3px 10px;
     outline: 0;
     border: 0;
     border-radius: 5px;
@@ -68,4 +69,13 @@ button {
 
 button:hover {
     background: var(--input-color-hover);
+}
+
+.full-width {
+    width: 100%;
+}
+
+a {
+    color: var(--very-dark-ultramarine);
+    text-decoration: none;
 }

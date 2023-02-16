@@ -1,7 +1,11 @@
 <script>
 import router from "../router/index";
+import userServiceClass from "../services/user.service";
+import { useUserStore } from "../stores/user";
 
 import Sidebar from "./Sidebar.vue";
+
+const userService = new userServiceClass();
 
 export default {
     name: "Main",
@@ -17,6 +21,13 @@ export default {
         if (!this.currentUserId) {
             router.push({ path: "/login" });
         }
+
+        const userStore = useUserStore();
+
+        userService.getUserInfo(this.currentUserId).then((res) => {
+            userStore.changeUserInfo(res.data);
+            console.log("Received user data!");
+        });
     },
 };
 </script>
