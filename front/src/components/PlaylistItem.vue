@@ -30,7 +30,7 @@ export default {
         },
     },
     computed: {
-        ...mapState(usePlayerStore, ["isPlaying", "nowPlayingIndex"]),
+        ...mapState(usePlayerStore, ["isPlaying", "nowPlayingInfo"]),
     },
 };
 </script>
@@ -38,8 +38,9 @@ export default {
 <template>
     <div class="playlist-item">
         <button class="item-play-btn" @click="play()">
-            <PlayArrowIcon v-if="nowPlayingIndex != index"></PlayArrowIcon>
-            <PauseIcon v-if="nowPlayingIndex == index"></PauseIcon>
+            <PlayArrowIcon></PlayArrowIcon>
+            <!-- <PlayArrowIcon v-if="nowPlayingInfo?.index != index"></PlayArrowIcon> -->
+            <!-- <PauseIcon v-else-if="nowPlayingInfo?.index == index"></PauseIcon> -->
         </button>
         <img v-bind:src="itemData.thumbnail.url" :alt="itemData.title" class="item-image" />
         <a class="item-title" :href="itemData.url">{{ itemData.title }}</a>

@@ -31,7 +31,7 @@ export default {
 
 <template>
     <div id="playlist">
-        <h2 id="playlist-title">Playlist</h2>
+        <h2 id="playlist-title">{{ playlistsInfo[this.playlistId]?.title || "Playlist" }}</h2>
         <div id="playlist-items">
             <PlaylistItem
                 v-for="(itemData, index) in playlistsInfo[this.playlistId]?.videos"

@@ -2,24 +2,35 @@
 import { mapState } from "pinia";
 import { useUserStore } from "../stores/user";
 
-import SidebarLink from "./UI/Sidebar/SidebarLink.vue";
+import SidebarLink from "./SidebarLink.vue";
 
 export default {
     name: "Sidebar",
     components: {
         SidebarLink,
     },
+    methods: {
+        logoutMethod() {
+            localStorage.removeItem("currentUserId");
+            router.push({ path: "/login" });
+        },
+    },
     computed: {
-        ...mapState(useUserStore, ["playlistsInfo"]),
+        ...mapState(useUserStore, ["playlistsInfo", "userInfo"]),
     },
 };
 </script>
 
 <template>
     <div id="sidebar">
+        <div id="sidebar-profile-tab" class="sidebar-tab">
+            <div id="sidebar-profile-block">
+                <h3 class="sidebar-profile-text">{{ userInfo?.login }}</h3>
+                <button @click="logoutMethod" id="logout-btn">Log out</button>
+            </div>
+        </div>
+        <hr />
         <div id="sidebar-links-tab" class="sidebar-tab">
-            <SidebarLink title="Home" relPath="/home" :isPlaylist="false"></SidebarLink>
-            <SidebarLink title="Profile" relPath="/profile" :isPlaylist="false"></SidebarLink>
             <SidebarLink title="Search" relPath="/search" :isPlaylist="false"></SidebarLink>
         </div>
         <hr />
@@ -45,6 +56,23 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 7px;
+}
+
+#sidebar-profile-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #173e56;
+    padding: 8px;
+    border-radius: 7px;
+}
+
+.sidebar-profile-text {
+    color: #76b5d9;
+}
+
+#logout-btn {
+    background: #a3cee6;
 }
 
 hr {

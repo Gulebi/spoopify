@@ -21,7 +21,7 @@ export default {
 <style scoped>
 #container {
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr 100px;
     height: 100vh;
 }
 </style>

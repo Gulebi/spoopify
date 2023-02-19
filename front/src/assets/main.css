@@ -71,6 +71,10 @@ button:hover {
     background: var(--input-color-hover);
 }
 
+button:disabled {
+    background: var(--input-color-disabled);
+}
+
 .full-width {
     width: 100%;
 }

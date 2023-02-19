@@ -70,16 +70,16 @@ export default {
             this.isLoop = !this.isLoop;
         },
         previous() {
-            this.nowPlayingIndex--;
+            this.nowPlayingInfo?.index--;
 
-            this.nowPlayingInfo = this.queue[this.nowPlayingIndex];
+            this.nowPlayingInfo = this.queue[this.nowPlayingInfo?.index];
 
             this.url = `${API_URL}/api/getAudioFile/?url=${this.nowPlayingInfo?.url}`;
         },
         next() {
-            this.nowPlayingIndex++;
+            this.nowPlayingInfo?.index++;
 
-            this.nowPlayingInfo = this.queue[this.nowPlayingIndex];
+            this.nowPlayingInfo = this.queue[this.nowPlayingInfo?.index];
 
             this.url = `${API_URL}/api/getAudioFile/?url=${this.nowPlayingInfo?.url}`;
         },
@@ -91,16 +91,15 @@ export default {
     mounted() {
         this.emitter.on("play", ({ playlistId, index }) => {
             this.queue = this.playlistsInfo[playlistId]?.videos;
-            this.nowPlayingIndex = index;
 
-            this.nowPlayingInfo = this.queue[index];
+            this.nowPlayingInfo = { ...this.queue[index], index, playlistId };
             this.isPlaying = true;
 
             this.url = `${API_URL}/api/getAudioFile/?url=${this.nowPlayingInfo?.url}`;
         });
     },
     computed: {
-        ...mapWritableState(usePlayerStore, ["isPlaying", "nowPlayingIndex", "nowPlayingInfo", "queue"]),
+        ...mapWritableState(usePlayerStore, ["isPlaying", "nowPlayingInfo", "queue"]),
         ...mapState(useUserStore, ["playlistsInfo"]),
     },
 };
@@ -122,20 +121,20 @@ export default {
 
         <div id="player-track-block">
             <div class="player-track-row" id="player-track-btns-row">
-                <button>
+                <button :disabled="!nowPlayingInfo">
                     <ShuffleIcon></ShuffleIcon>
                 </button>
-                <button @click="previous">
+                <button :disabled="!nowPlayingInfo" @click="previous">
                     <SkipPreviousIcon></SkipPreviousIcon>
                 </button>
-                <button @click="play" id="play-btn">
+                <button :disabled="!nowPlayingInfo" @click="play" id="play-btn">
                     <PlayArrowIcon v-if="!isPlaying"></PlayArrowIcon>
                     <PauseIcon v-if="isPlaying"></PauseIcon>
                 </button>
-                <button @click="next">
+                <button :disabled="!nowPlayingInfo" @click="next">
                     <SkipNextIcon></SkipNextIcon>
                 </button>
-                <button @click="loop">
+                <button :disabled="!nowPlayingInfo" @click="loop">
                     <RepeatIcon v-if="!isLoop"></RepeatIcon>
                     <RepeatOneIcon v-if="isLoop"></RepeatOneIcon>
                 </button>

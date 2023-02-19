@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 main {
-    height: 100%;
+    overflow: auto;
     display: grid;
     grid-template-columns: 1fr 7fr;
     background: var(--main-color);
