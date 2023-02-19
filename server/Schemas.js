@@ -5,8 +5,8 @@ const UserSchema = new Schema({
     surname: String,
     login: String,
     password: String,
-    playlists: {
-        type: [{ id: String, title: String }],
+    playlistsIds: {
+        type: [String],
         default: [],
     },
 });

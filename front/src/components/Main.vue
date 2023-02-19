@@ -1,11 +1,14 @@
 <script>
 import router from "../router/index";
 import userServiceClass from "../services/user.service";
+import getInfoService from "../services/getInfo.service";
 import { useUserStore } from "../stores/user";
 
 import Sidebar from "./Sidebar.vue";
 
 const userService = new userServiceClass();
+
+const infoService = new getInfoService();
 
 export default {
     name: "Main",
@@ -17,7 +20,7 @@ export default {
             currentUserId: localStorage.getItem("currentUserId"),
         };
     },
-    created() {
+    mounted() {
         if (!this.currentUserId) {
             router.push({ path: "/login" });
         }
@@ -27,6 +30,12 @@ export default {
         userService.getUserInfo(this.currentUserId).then((res) => {
             userStore.changeUserInfo(res.data);
             console.log("Received user data!");
+
+            res.data.playlistsIds?.forEach((id) => {
+                infoService.playlistInfoById(id).then((plRes) => {
+                    userStore.playlistsInfo[plRes.data.id] = plRes.data;
+                });
+            });
         });
     },
 };

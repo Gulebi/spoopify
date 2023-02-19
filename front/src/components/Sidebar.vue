@@ -1,4 +1,5 @@
 <script>
+import { mapState } from "pinia";
 import { useUserStore } from "../stores/user";
 
 import SidebarLink from "./UI/Sidebar/SidebarLink.vue";
@@ -8,15 +9,8 @@ export default {
     components: {
         SidebarLink,
     },
-    data() {
-        return {
-            currentUserInfo: null,
-        };
-    },
-    mounted() {
-        const userStore = useUserStore();
-
-        this.currentUserInfo = userStore.userInfo;
+    computed: {
+        ...mapState(useUserStore, ["playlistsInfo"]),
     },
 };
 </script>
@@ -31,10 +25,10 @@ export default {
         <hr />
         <div id="sidebar-playlists-tab" class="sidebar-tab">
             <SidebarLink
-                v-for="playlistId in currentUserInfo?.playlists"
-                :key="playlistId"
-                :relPath="`/playlist/${playlistId}`"
-                title="Playlist"
+                v-for="playlist in playlistsInfo"
+                :key="playlist.id"
+                :relPath="`/playlist/${playlist.id}`"
+                :title="playlist.title"
                 :isPlaylist="true"
             ></SidebarLink>
         </div>

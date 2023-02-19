@@ -1,6 +1,8 @@
 <script>
 import userServiceClass from "@/services/user.service";
 import infoServiceClass from "@/services/getInfo.service";
+import { useUserStore } from "../stores/user";
+import { mapStores } from "pinia";
 
 import Header from "./Header.vue";
 
@@ -24,14 +26,18 @@ export default {
             infoService.playlistInfoByURL(this.playlistURL).then((res) => {
                 this.playlistData = res.data;
                 console.log("Received playlist data!");
-                console.log(res);
             });
         },
         addPlaylist() {
-            userService
-                .addPlaylist(this.currentUserId, { title: this.playlistData.title, id: this.playlistData.id })
-                .then((res) => {});
+            userService.addPlaylist(this.currentUserId, { id: this.playlistData.id }).then((res) => {
+                this.playlistData = null;
+                console.log("Playlist added!");
+            });
+            this.userStore.playlistsInfo[this.playlistData.id] = this.playlistData;
         },
+    },
+    computed: {
+        ...mapStores(useUserStore),
     },
 };
 </script>
@@ -52,7 +58,7 @@ export default {
                         <h3 id="result-title">{{ playlistData?.title }}</h3>
                     </a>
                 </div>
-                <button id="search-add-playlist-btn" v-if="playlistData">Add Playlist</button>
+                <button @click="addPlaylist" id="search-add-playlist-btn" v-if="playlistData">Add Playlist</button>
             </div>
         </div>
     </div>

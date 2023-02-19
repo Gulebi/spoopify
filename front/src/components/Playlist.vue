@@ -1,9 +1,9 @@
 <script>
-import getInfoService from "../services/getInfo.service";
+import { mapState } from "pinia";
+import { watch } from "vue";
+import { useUserStore } from "../stores/user";
 
 import PlaylistItem from "./PlaylistItem.vue";
-
-const infoService = new getInfoService();
 
 export default {
     name: "Playlist",
@@ -13,14 +13,18 @@ export default {
     data() {
         return {
             playlistId: this.$route.params.id,
-            playlistData: null,
         };
     },
-    created() {
-        infoService.playlistInfoById(this.playlistId).then((res) => {
-            this.playlistData = res.data;
-            console.log(res);
-        });
+    mounted() {
+        watch(
+            () => this.$route.params.id,
+            () => {
+                this.playlistId = this.$route.params.id;
+            }
+        );
+    },
+    computed: {
+        ...mapState(useUserStore, ["playlistsInfo"]),
     },
 };
 </script>
@@ -30,9 +34,11 @@ export default {
         <h2 id="playlist-title">Playlist</h2>
         <div id="playlist-items">
             <PlaylistItem
-                v-for="itemData in playlistData?.videos"
+                v-for="(itemData, index) in playlistsInfo[this.playlistId]?.videos"
                 :key="itemData.id"
                 :itemData="itemData"
+                :playlistId="playlistId"
+                :index="index"
             ></PlaylistItem>
         </div>
     </div>
@@ -40,6 +46,7 @@ export default {
 
 <style scoped>
 #playlist {
+    overflow: auto;
     display: flex;
     flex-direction: column;
     padding: 15px 5%;

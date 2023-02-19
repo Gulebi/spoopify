@@ -72,11 +72,11 @@ router.post("/addPlaylist/:userId", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
         const { userId } = req.params;
-        const { playlistId, playlistTitle } = req.body;
+        const { id: plId } = req.body;
 
         const user = await UserModel.findById(userId);
 
-        user.playlists.push({ id: playlistId, title: playlistTitle });
+        user.playlistsIds.push(plId);
 
         user.save((err) => {
             if (err) return res.status(500).send({ message: "Error" });
@@ -92,11 +92,11 @@ router.post("/deletePlaylist/:userId", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
         const { userId } = req.params;
-        const { playlistId } = req.body;
+        const { id: plId } = req.body;
 
         const user = await UserModel.findById(userId);
 
-        user.playlists = user.playlists.filter((pl) => pl.id != playlistId);
+        user.playlistsIds = user.playlistsIds.filter((id) => id != plId);
 
         user.save((err) => {
             if (err) return res.status(500).send({ message: "Error" });

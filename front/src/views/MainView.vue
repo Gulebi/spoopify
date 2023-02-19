@@ -1,12 +1,10 @@
 <script>
-import Header from "../components/Header.vue";
 import Main from "../components/Main.vue";
 import Footer from "../components/Footer.vue";
 
 export default {
     name: "MainView",
     components: {
-        Header,
         Main,
         Footer,
     },
@@ -22,8 +20,8 @@ export default {
 
 <style scoped>
 #container {
+    display: grid;
+    grid-template-rows: 1fr auto;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 </style>
