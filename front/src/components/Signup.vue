@@ -1,10 +1,12 @@
 <script>
 import router from "../router/index";
-import userServiceClass from "../services/user.service";
+import userServiceClass from "@/services/user.service";
+import regexServiceClass from "@/services/regex.service";
 
 import Header from "./Header.vue";
 
 const userService = new userServiceClass();
+const regexService = new regexServiceClass();
 
 export default {
     name: "Signup",
@@ -21,13 +23,20 @@ export default {
     },
     methods: {
         signupMethod() {
-            userService
-                .signup({ name: this.name, surname: this.surname, login: this.login, password: this.password })
-                .then((res) => {
+            if (!regexService.validateLogin(this.login)) {
+                alert("Invalid login!");
+                console.log("Invalid login!");
+            } else if (!regexService.validatePassword(this.password)) {
+                alert("Invalid password!");
+                console.log("Invalid password!");
+            } else {
+                const payload = { name: this.name, surname: this.surname, login: this.login, password: this.password };
+                userService.signup(payload).then((res) => {
                     if (res.message == "Success") {
                         router.push({ path: "/login" });
                     }
                 });
+            }
         },
     },
 };

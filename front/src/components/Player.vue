@@ -70,14 +70,14 @@ export default {
             this.isLoop = !this.isLoop;
         },
         previous() {
-            this.nowPlayingInfo?.index--;
+            this.nowPlayingInfo.index--;
 
             this.nowPlayingInfo = this.queue[this.nowPlayingInfo?.index];
 
             this.url = `${API_URL}/api/getAudioFile/?url=${this.nowPlayingInfo?.url}`;
         },
         next() {
-            this.nowPlayingInfo?.index++;
+            this.nowPlayingInfo.index++;
 
             this.nowPlayingInfo = this.queue[this.nowPlayingInfo?.index];
 
@@ -224,6 +224,7 @@ export default {
 .track {
     padding: 0;
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 8px;
     border-radius: 5px;

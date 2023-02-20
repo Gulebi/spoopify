@@ -4,10 +4,12 @@ import { watch } from "vue";
 import { useUserStore } from "../stores/user";
 
 import PlaylistItem from "./PlaylistItem.vue";
+import Header from "./Header.vue";
 
 export default {
     name: "Playlist",
     components: {
+        Header,
         PlaylistItem,
     },
     data() {
@@ -31,7 +33,7 @@ export default {
 
 <template>
     <div id="playlist">
-        <h2 id="playlist-title">{{ playlistsInfo[this.playlistId]?.title || "Playlist" }}</h2>
+        <Header :title="playlistsInfo[this.playlistId]?.title || 'Playlist'"></Header>
         <div id="playlist-items">
             <PlaylistItem
                 v-for="(itemData, index) in playlistsInfo[this.playlistId]?.videos"
@@ -49,7 +51,6 @@ export default {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    padding: 15px 5%;
     gap: 15px;
 }
 
@@ -57,6 +58,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding: 15px 8%;
 }
 
 #playlist-title {

@@ -4,7 +4,7 @@ export default {
     props: {
         title: {
             type: String,
-            default: "Spoopify",
+            default: "Header",
         },
     },
 };
@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 header {
-    height: 80px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;

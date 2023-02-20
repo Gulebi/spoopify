@@ -23,6 +23,9 @@ export default {
                 if (res.message == "Success") {
                     localStorage.setItem("currentUserId", res.data);
                     router.push({ path: "/" });
+                } else {
+                    alert("Incorrect login or password!");
+                    console.log("Incorrect login or password!");
                 }
             });
         },

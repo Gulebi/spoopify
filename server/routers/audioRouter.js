@@ -12,7 +12,7 @@ router.get("/getAudioFile", async (req, res) => {
 
         ysr.getVideo(url)
             .then((info) => {
-                res.attachment(`${info.title}.mp3`);
+                res.status(200).attachment(`${info.title}.mp3`);
                 ytdl(url, { filter: "audioonly", dlChunkSize: 0, quality: "highestaudio" }).pipe(res);
             })
             .catch((err) => {

@@ -1,6 +1,7 @@
 <script>
 import userServiceClass from "@/services/user.service";
 import infoServiceClass from "@/services/getInfo.service";
+import regexServiceClass from "@/services/regex.service";
 import { useUserStore } from "../stores/user";
 import { mapStores } from "pinia";
 
@@ -8,6 +9,7 @@ import Header from "./Header.vue";
 
 const userService = new userServiceClass();
 const infoService = new infoServiceClass();
+const regexService = new regexServiceClass();
 
 export default {
     name: "Search",
@@ -23,10 +25,15 @@ export default {
     },
     methods: {
         getPlaylistInfo() {
-            infoService.playlistInfoByURL(this.playlistURL).then((res) => {
-                this.playlistData = res.data;
-                console.log("Received playlist data!");
-            });
+            if (regexService.validatePlaylistURL(this.playlistURL)) {
+                infoService.playlistInfoByURL(this.playlistURL).then((res) => {
+                    this.playlistData = res.data;
+                    console.log("Received playlist data!");
+                });
+            } else {
+                alert("Incorrect playlist URL!");
+                console.log("Incorrect playlist URL!");
+            }
         },
         addPlaylist() {
             userService.addPlaylist(this.currentUserId, { id: this.playlistData.id }).then((res) => {
